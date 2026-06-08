@@ -48,3 +48,4 @@ trace.zip
 *.png
 *.log
 .env
+.idea/
