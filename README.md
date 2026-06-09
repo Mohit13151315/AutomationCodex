@@ -27,3 +27,10 @@ src/test/java/com/codex
     ├── pages
     ├── tests
     └── utils
+
+
+## Learning Goal
+
+The goal of this project is to compare Selenium and Playwright side by side while building a company-style automation framework step by step.
+
+This project also follows real-time Git and GitHub workflows such as feature branches, commits, pushes, pull requests, merges, and branch cleanup.gt
