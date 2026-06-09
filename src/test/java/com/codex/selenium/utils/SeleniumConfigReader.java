@@ -20,6 +20,12 @@ public class SeleniumConfigReader {
     }
 
     public String getProperty(String key) {
-        return properties.getProperty(key);
+        String value = properties.getProperty(key);
+
+        if (value == null || value.trim().isEmpty()) {
+            throw new RuntimeException("Property not found or empty in selenium-config.properties: " + key);
+        }
+
+        return value;
     }
 }
