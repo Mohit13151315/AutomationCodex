@@ -17,6 +17,7 @@ public class SeleniumFirstTest extends SeleniumBaseTest {
 
         Thread.sleep(5000);
 
-        Assertions.assertEquals("Example Domain", actualTitle);
+        String expectedTitle = configReader.getProperty("expectedTitle");
+        Assertions.assertEquals(expectedTitle, actualTitle);
     }
 }

@@ -17,6 +17,7 @@ public class PlaywrightFirstTest extends PlaywrightBaseTest {
 
         page.waitForTimeout(5000);
 
-        Assertions.assertEquals("Example Domain", actualTitle);
+        String expectedTitle = configReader.getProperty("expectedTitle");
+        Assertions.assertEquals(expectedTitle, actualTitle);
     }
 }
