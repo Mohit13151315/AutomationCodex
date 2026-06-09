@@ -1,5 +1,6 @@
 package com.codex.playwright.factory;
 
+import com.codex.playwright.utils.PlaywrightConfigReader;
 import com.microsoft.playwright.*;
 
 public class PlaywrightFactory {
@@ -10,13 +11,22 @@ public class PlaywrightFactory {
     private Page page;
 
     public Page initPage() {
+        PlaywrightConfigReader configReader = new PlaywrightConfigReader();
+
+        String browserName = configReader.getProperty("browser");
+        boolean headless = Boolean.parseBoolean(configReader.getProperty("headless"));
+
         playwright = Playwright.create();
 
-        browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions()
-                        .setChannel("msedge")
-                        .setHeadless(false)
-        );
+        if (browserName.equalsIgnoreCase("edge")) {
+            browser = playwright.chromium().launch(
+                    new BrowserType.LaunchOptions()
+                            .setChannel("msedge")
+                            .setHeadless(headless)
+            );
+        } else {
+            throw new RuntimeException("Unsupported browser: " + browserName);
+        }
 
         browserContext = browser.newContext();
         page = browserContext.newPage();
