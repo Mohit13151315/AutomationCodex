@@ -22,7 +22,6 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
         String actualProductsTitle = loginPage.getProductsTitle();
         String expectedProductsTitle = configReader.getProperty("expectedProductsTitle");
 
-        page.waitForTimeout(5000);
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
@@ -40,7 +39,6 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
         String actualErrorMessage = loginPage.getErrorMessage();
         String expectedErrorMessage = configReader.getProperty("expectedLockedOutError");
 
-        page.waitForTimeout(5000);
 
         Assertions.assertEquals(expectedErrorMessage, actualErrorMessage);
     }
