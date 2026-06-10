@@ -10,6 +10,7 @@ public class PlaywrightLoginPage {
     private final String passwordInput = "#password";
     private final String loginButton = "#login-button";
     private final String productsTitle = ".title";
+    private final String errorMessage = "[data-test='error']";
 
     public PlaywrightLoginPage(Page page) {
         this.page = page;
@@ -39,5 +40,8 @@ public class PlaywrightLoginPage {
 
     public String getProductsTitle() {
         return page.locator(productsTitle).innerText();
+    }
+    public String getErrorMessage() {
+        return page.locator(errorMessage).innerText();
     }
 }

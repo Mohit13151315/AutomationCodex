@@ -11,6 +11,7 @@ public class SeleniumLoginPage {
     private final By passwordInput = By.id("password");
     private final By loginButton = By.id("login-button");
     private final By productsTitle = By.className("title");
+    private final By errorMessage = By.cssSelector("[data-test='error']");
 
     public SeleniumLoginPage(WebDriver driver) {
         this.driver = driver;
@@ -38,7 +39,12 @@ public class SeleniumLoginPage {
         clickLoginButton();
     }
 
+
     public String getProductsTitle() {
         return driver.findElement(productsTitle).getText();
+    }
+
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText();
     }
 }
