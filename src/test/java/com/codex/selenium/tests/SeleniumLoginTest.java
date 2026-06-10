@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class SeleniumLoginTest extends SeleniumBaseTest {
 
     @Test
-    public void validLoginTest() throws InterruptedException {
+    public void validLoginTest()  {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
         SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
 
@@ -22,12 +22,12 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
         String actualProductsTitle = loginPage.getProductsTitle();
         String expectedProductsTitle = configReader.getProperty("expectedProductsTitle");
 
-        Thread.sleep(5000);
+
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
     @Test
-    public void lockedOutUserLoginTest() throws InterruptedException {
+    public void lockedOutUserLoginTest()  {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
         SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
 
@@ -40,7 +40,7 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
         String actualErrorMessage = loginPage.getErrorMessage();
         String expectedErrorMessage = configReader.getProperty("expectedLockedOutError");
 
-        Thread.sleep(5000);
+
 
         Assertions.assertEquals(expectedErrorMessage, actualErrorMessage);
     }
