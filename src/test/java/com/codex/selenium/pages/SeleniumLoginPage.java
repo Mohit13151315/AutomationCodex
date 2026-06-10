@@ -1,16 +1,13 @@
 package com.codex.selenium.pages;
 
+import com.codex.selenium.utils.SeleniumWaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class SeleniumLoginPage {
 
     private final WebDriver driver;
-    private final WebDriverWait wait;
+    private final SeleniumWaitUtils waitUtils;
 
     private final By usernameInput = By.id("user-name");
     private final By passwordInput = By.id("password");
@@ -20,7 +17,7 @@ public class SeleniumLoginPage {
 
     public SeleniumLoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.waitUtils = new SeleniumWaitUtils(driver);
     }
 
     public void navigateToApplication(String url) {
@@ -28,15 +25,15 @@ public class SeleniumLoginPage {
     }
 
     public void enterUsername(String username) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput)).sendKeys(username);
+        waitUtils.waitForElementVisible(usernameInput).sendKeys(username);
     }
 
     public void enterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput)).sendKeys(password);
+        waitUtils.waitForElementVisible(passwordInput).sendKeys(password);
     }
 
     public void clickLoginButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+        waitUtils.waitForElementClickable(loginButton).click();
     }
 
     public void login(String username, String password) {
@@ -46,10 +43,10 @@ public class SeleniumLoginPage {
     }
 
     public String getProductsTitle() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(productsTitle)).getText();
+        return waitUtils.waitForElementVisible(productsTitle).getText();
     }
 
     public String getErrorMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
+        return waitUtils.waitForElementVisible(errorMessage).getText();
     }
 }
