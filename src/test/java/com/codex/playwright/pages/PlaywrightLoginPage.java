@@ -1,19 +1,25 @@
 package com.codex.playwright.pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class PlaywrightLoginPage {
 
     private final Page page;
 
-    private final String usernameInput = "#user-name";
-    private final String passwordInput = "#password";
-    private final String loginButton = "#login-button";
-    private final String productsTitle = ".title";
-    private final String errorMessage = "[data-test='error']";
+    private final Locator usernameInput;
+    private final Locator passwordInput;
+    private final Locator loginButton;
+    private final Locator productsTitle;
+    private final Locator errorMessage;
 
     public PlaywrightLoginPage(Page page) {
         this.page = page;
+        this.usernameInput = page.locator("#user-name");
+        this.passwordInput = page.locator("#password");
+        this.loginButton = page.locator("#login-button");
+        this.productsTitle = page.locator(".title");
+        this.errorMessage = page.locator("[data-test='error']");
     }
 
     public void navigateToApplication(String url) {
@@ -21,15 +27,15 @@ public class PlaywrightLoginPage {
     }
 
     public void enterUsername(String username) {
-        page.locator(usernameInput).fill(username);
+        usernameInput.fill(username);
     }
 
     public void enterPassword(String password) {
-        page.locator(passwordInput).fill(password);
+        passwordInput.fill(password);
     }
 
     public void clickLoginButton() {
-        page.locator(loginButton).click();
+        loginButton.click();
     }
 
     public void login(String username, String password) {
@@ -39,9 +45,10 @@ public class PlaywrightLoginPage {
     }
 
     public String getProductsTitle() {
-        return page.locator(productsTitle).innerText();
+        return productsTitle.innerText();
     }
+
     public String getErrorMessage() {
-        return page.locator(errorMessage).innerText();
+        return errorMessage.innerText();
     }
 }
