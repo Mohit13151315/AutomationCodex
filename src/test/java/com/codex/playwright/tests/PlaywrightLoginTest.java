@@ -26,4 +26,22 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
+    @Test
+    public void lockedOutUserLoginTest() {
+        PlaywrightConfigReader configReader = new PlaywrightConfigReader();
+        PlaywrightLoginPage loginPage = new PlaywrightLoginPage(page);
+
+        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.login(
+                configReader.getProperty("invalidUsername"),
+                configReader.getProperty("invalidPassword")
+        );
+
+        String actualErrorMessage = loginPage.getErrorMessage();
+        String expectedErrorMessage = configReader.getProperty("expectedLockedOutError");
+
+        page.waitForTimeout(5000);
+
+        Assertions.assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
 }

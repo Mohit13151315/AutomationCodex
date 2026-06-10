@@ -26,4 +26,22 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
+    @Test
+    public void lockedOutUserLoginTest() throws InterruptedException {
+        SeleniumConfigReader configReader = new SeleniumConfigReader();
+        SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+
+        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.login(
+                configReader.getProperty("invalidUsername"),
+                configReader.getProperty("invalidPassword")
+        );
+
+        String actualErrorMessage = loginPage.getErrorMessage();
+        String expectedErrorMessage = configReader.getProperty("expectedLockedOutError");
+
+        Thread.sleep(5000);
+
+        Assertions.assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
 }
