@@ -4,6 +4,8 @@ import com.codex.playwright.factory.PlaywrightFactory;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import com.codex.playwright.utils.PlaywrightScreenshotUtils;
+import org.junit.jupiter.api.TestInfo;
 
 public class PlaywrightBaseTest {
 
@@ -17,7 +19,11 @@ public class PlaywrightBaseTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown(TestInfo testInfo) {
+        if (page != null) {
+            PlaywrightScreenshotUtils.captureScreenshot(page, testInfo.getDisplayName());
+        }
+
         if (playwrightFactory != null) {
             playwrightFactory.closePlaywright();
         }
