@@ -17,6 +17,7 @@
         <selenium.version>4.33.0</selenium.version>
         <junit.version>5.10.2</junit.version>
         <surefire.version>3.2.5</surefire.version>
+        <groups></groups>
     </properties>
 
     <dependencies>
@@ -46,6 +47,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
+                <configuration>
+                    <groups>${groups}</groups>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
