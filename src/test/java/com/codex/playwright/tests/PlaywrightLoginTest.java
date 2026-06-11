@@ -5,9 +5,11 @@ import com.codex.playwright.pages.PlaywrightLoginPage;
 import com.codex.playwright.utils.PlaywrightConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 
+@Tag("playwright")
 public class PlaywrightLoginTest extends PlaywrightBaseTest {
-
+    @Tag("smoke")
     @Test
     public void validLoginTest() {
         PlaywrightConfigReader configReader = new PlaywrightConfigReader();
@@ -25,6 +27,7 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
+    @Tag("regression")
     @Test
     public void lockedOutUserLoginTest() {
         PlaywrightConfigReader configReader = new PlaywrightConfigReader();

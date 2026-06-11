@@ -5,9 +5,13 @@ import com.codex.selenium.pages.SeleniumLoginPage;
 import com.codex.selenium.utils.SeleniumConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 
+
+@Tag("selenium")
 public class SeleniumLoginTest extends SeleniumBaseTest {
 
+    @Tag("smoke")
     @Test
     public void validLoginTest()  {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
@@ -26,6 +30,7 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
 
         Assertions.assertEquals(expectedProductsTitle, actualProductsTitle);
     }
+    @Tag("regression")
     @Test
     public void lockedOutUserLoginTest()  {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
