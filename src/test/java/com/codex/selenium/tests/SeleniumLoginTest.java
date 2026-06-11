@@ -17,7 +17,7 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
         SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
 
-        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.navigateToApplication(configReader.getEnvironmentUrl());
         loginPage.login(
                 configReader.getProperty("username"),
                 configReader.getProperty("password")
@@ -36,7 +36,7 @@ public class SeleniumLoginTest extends SeleniumBaseTest {
         SeleniumConfigReader configReader = new SeleniumConfigReader();
         SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
 
-        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.navigateToApplication(configReader.getEnvironmentUrl());
         loginPage.login(
                 configReader.getProperty("invalidUsername"),
                 configReader.getProperty("invalidPassword")
