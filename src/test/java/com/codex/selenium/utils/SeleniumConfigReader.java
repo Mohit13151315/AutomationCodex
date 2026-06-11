@@ -28,4 +28,14 @@ public class SeleniumConfigReader {
 
         return value;
     }
+    public String getEnvironmentUrl() {
+        String environment = System.getProperty("env");
+
+        if (environment == null || environment.trim().isEmpty()) {
+            environment = getProperty("env");
+        }
+
+        String urlKey = environment + ".url";
+        return getProperty(urlKey);
+    }
 }

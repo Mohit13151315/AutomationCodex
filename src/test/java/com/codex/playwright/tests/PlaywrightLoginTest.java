@@ -15,7 +15,7 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
         PlaywrightConfigReader configReader = new PlaywrightConfigReader();
         PlaywrightLoginPage loginPage = new PlaywrightLoginPage(page);
 
-        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.navigateToApplication(configReader.getEnvironmentUrl());
         loginPage.login(
                 configReader.getProperty("username"),
                 configReader.getProperty("password")
@@ -33,7 +33,7 @@ public class PlaywrightLoginTest extends PlaywrightBaseTest {
         PlaywrightConfigReader configReader = new PlaywrightConfigReader();
         PlaywrightLoginPage loginPage = new PlaywrightLoginPage(page);
 
-        loginPage.navigateToApplication(configReader.getProperty("url"));
+        loginPage.navigateToApplication(configReader.getEnvironmentUrl());
         loginPage.login(
                 configReader.getProperty("invalidUsername"),
                 configReader.getProperty("invalidPassword")
