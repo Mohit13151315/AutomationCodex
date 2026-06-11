@@ -4,6 +4,8 @@ import com.codex.selenium.factory.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import com.codex.selenium.utils.SeleniumScreenshotUtils;
+import org.junit.jupiter.api.TestInfo;
 
 public class SeleniumBaseTest {
 
@@ -16,8 +18,9 @@ public class SeleniumBaseTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown(TestInfo testInfo) {
         if (driver != null) {
+            SeleniumScreenshotUtils.captureScreenshot(driver, testInfo.getDisplayName());
             driver.quit();
         }
     }
