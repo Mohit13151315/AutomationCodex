@@ -38,4 +38,13 @@ public class PlaywrightConfigReader {
         String urlKey = environment + ".url";
         return getProperty(urlKey);
     }
+    public String getBrowser() {
+        String browser = System.getProperty("browser");
+
+        if (browser == null || browser.trim().isEmpty()) {
+            browser = getProperty("browser");
+        }
+
+        return browser;
+    }
 }

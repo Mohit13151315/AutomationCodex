@@ -2,6 +2,7 @@ package com.codex.playwright.factory;
 
 import com.codex.playwright.utils.PlaywrightConfigReader;
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.BrowserType;
 
 public class PlaywrightFactory {
 
@@ -13,7 +14,7 @@ public class PlaywrightFactory {
     public Page initPage() {
         PlaywrightConfigReader configReader = new PlaywrightConfigReader();
 
-        String browserName = configReader.getProperty("browser");
+        String browserName = configReader.getBrowser();
         boolean headless = Boolean.parseBoolean(configReader.getProperty("headless"));
 
         playwright = Playwright.create();
@@ -24,8 +25,19 @@ public class PlaywrightFactory {
                             .setChannel("msedge")
                             .setHeadless(headless)
             );
+        } else if (browserName.equalsIgnoreCase("chrome")) {
+            browser = playwright.chromium().launch(
+                    new BrowserType.LaunchOptions()
+                            .setChannel("chrome")
+                            .setHeadless(headless)
+            );
+        } else if (browserName.equalsIgnoreCase("chromium")) {
+            browser = playwright.chromium().launch(
+                    new BrowserType.LaunchOptions()
+                            .setHeadless(headless)
+            );
         } else {
-            throw new RuntimeException("Unsupported browser: " + browserName);
+            throw new RuntimeException("Unsupported browser for Playwright: " + browserName);
         }
 
         browserContext = browser.newContext();
